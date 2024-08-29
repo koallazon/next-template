@@ -1,0 +1,33 @@
+{
+  "name": "next-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
+    "lint:es": "eslint '**/*.{js.ts.tsx}'",
+    "lint:es:fix": "pnpm run lint:es -- --fix",
+    "prettier": "prettier '**/*' --check",
+    "prettier:fix": "prettier '**/*' --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^14.2.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.12"
+  },
+  "devDependencies": {
+    "@titicaca/eslint-config-triple": "^5.2.1",
+    "@types/node": "^22.5.1",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^9.9.1",
+    "eslint-config-next": "^14.2.7",
+    "typescript": "^5.5.4"
+  }
+}

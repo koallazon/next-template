@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true, // only 타입 체크, Next.js는 swc가 타입스크립트 파일을 컴파일하므로 굳이 타입스크립트가 자바스크립트 파일로 컴파일할 필요가 없다.
+    "esModuleInterop": true, // CommonJs로 보낸 모듈도 ES 방식으로 import 할 수 있도록 도와준다.
+    "module": "ESNext", // commonjs와 esnext에서 선택 가능
+    "moduleResolution": "node", // node와 classic 방식 중 선택 가능, node는 node_module를 기준으로 모듈 해석, classic은 tsconfig.json에 있는 디렉터리 기준으로 해석
+    "resolveJsonModule": true, // JSON파일을 import할 수 있게 해준다. 이 옵션 활성화시 allowJs도 자동으로 활성화됨
+    "isolatedModules": true, // import/export가 없는 단순 파일이 생성되지 않도록 도와준다.
+    /* 
+        jsx 옵션    
+        tsx 안에 있는 jSX를 어떻게 컴파일할지 정한다.
+        - react
+            React.createElement로 변환한다. 리액트 16까지 기본적인 변환방식
+        - react-jsx
+            리액트 17부터 등장한 방식, react/jsx-runtime을 사용해 변환, 이 방식을 쓰면 React.createElement를 사용하지 않아 tsx파일안에 react 모듈을 꼭 import하지 않아도 된다.
+        - react-jsxdev
+            react-jsx와 동일하지만 디버깅 정보가 추가된 모드
+        - preserve
+            변환하지 않고 그대로 유지
+        - react-native
+            변환하지 않고 그대로 유지
+    */
+    "jsx": "preserve", // Next.js의 swc가 변환해주기때문에 기존 유지되는 'preserve'로 설정
+    "incremental": true, // 마지막 컴파일 정보를 .tsbuildinfo 파일 형태로 만들어 디스크에 저장하여 컴파일 수행 효율을 올린다.
+    "baseUrl": "src", // 모듈을 찾을 때 기준이 되는 디렉토리를 지정, path와 함께 사용된다.
+    "paths": {
+      // alias 설정 가능(#나 $ 같은 특수문자 접두사 사용, @는 angular나 types와 같이 스코프 패키지에서 널리 사용되기에 자제하는 것이 좋다.)
+      "#pages/*": ["pages/*"],
+      "#hooks/*": ["hooks/*"],
+      "#types/*": ["types/*"],
+      "#components/*": ["components/*"],
+      "#utils/*": ["utils/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"], // 컴파일 대상 목록
+  "exclude": ["node_modules"] // 컴파일 제외 대상 목록
+}
